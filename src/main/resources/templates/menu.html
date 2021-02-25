@@ -4,12 +4,45 @@
     <meta charset="UTF-8" />
     <title>Spa Menu</title>
     <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+
 </head>
 <body>
 <h1>My Super Fancy Spa</h1>
 <div id = "clientProfile">
+<h2>My Profile</h2>
+    <form>
+        <p th:text = "${name}"></p>
+        <p th:text = "${skintype}"></p>
+        <p th:text = "${manipedi}"></p>
+    </form>
 </div>
 <div id = "servicesMenu">
+    <h2>Menu of Available Services</h2>
+
+    <table>
+        <h3>Facial Treatments</h3>
+        <p>The facial treatments below are recommended by our estheticians for your given skin type</p>
+        <th:block th:each="service : ${appropriateFacials}">
+            <tr>
+                <td th:text="${service}"></td>
+            </tr>
+        </th:block>
+    </table>
+
+    <div th:if="${manipedi == 'manicure' OR manipedi == 'both'}" class="manicure">
+        <h3>Manicure</h3>
+        <p th:replace="fragments :: manicureDescription"></p>
+    </div>
+
+    <div th:if="${manipedi == 'pedicure' OR manipedi == 'both'}" class="pedicure">
+        <h3>Pedicure</h3>
+        <p th:replace="fragments :: pedicureDescription"></p>
+    </div>
+    <div class="footer">
+        <div class="foo blue"></div>
+        <div class="foo purple"></div>
+        <div class="foo wine"></div>
+    </div>
 </div>
 </body>
 </html>
